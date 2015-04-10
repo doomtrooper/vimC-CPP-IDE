@@ -9,12 +9,21 @@ if [[ $? -eq 0 ]]
 	then
 		echo "No internet access found."
 		exit 0
+else
+	echo "Internet Connectivity Found..."
 fi
 
 if [ ! -f ~/.vimrc ]
 	then
-		#echo "File not found!"
+		echo ".vimrc File not found!!!"
+		echo "Generating new .vimrc Config file...."
 		cp ./.vimrc ~/.vimrc
+		#checking for successfull execution of a command.
+		if [ $? -eq 0 ]; then
+    			echo ".vimrc Config file generated successfully..."
+		else
+    			echo "There was some problem in generating .vimrc config file..."
+		fi
 	else
 		mv ~/.vimrc ~/.vimrc.old
 		cp ./.vimrc ~/.vimrc
@@ -30,6 +39,7 @@ then
 	  # Control will enter here if .vim exists.
 	  cp ./$skeletonCPP ~/.vim/
 fi
+
 
 if [ ! -f ~/.vim/$skeletonC ]
 then
